@@ -1,4 +1,8 @@
-<?PHP // Basic Template ?>
+<?PHP 
+// Restyle Template
+
+REQUIRE_ONCE dirname(__FILE__).'/etc/config/system.php'; 
+?>
 
 
 <!doctype html>

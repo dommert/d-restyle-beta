@@ -26,6 +26,7 @@ array(
 	'email' => 'email@domain.com',  // Admin Email
 	'title' => 'System Admin',  // Job Title
 	'misc' => '',  //Misc Data
+	'passwd' => 'p4ssw0rd!', // SU Admin Password (CHANGE!!)
 );
 
 		// Website Configs

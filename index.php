@@ -22,7 +22,54 @@ K. Williams 	[UI/UX]		K.Williams@LilliMedia.com
 
 
 // Load Setup
- REQUIRE_ONCE './etc/config/system.php';   
+REQUIRE_ONCE dirname(__FILE__).'/etc/config/system.php';   
+
+
+
+$uri= $GLOBALS['uri'];
+echo "Testing..... <BR> Striped URL?: ";
+var_dump($uri);
+echo '<HR><BR>';
+
+switch ($uri)
+{
+case "":
+  echo "Welcome to the Index Page";
+  break;
+case "/kameron":
+  echo "I feel your name is Kameron......<BR> And you love cock..";
+  break;
+case "/lillimedia":
+  echo "Lillimedia, Oh I heard of you guys. You have Dommert the Magnificient as a partner";
+  break;
+case "/dommert":
+  echo "Dommert The Magnificient";
+  break;
+case "/jch":
+  echo "Im in love with the letter Z";
+  break;
+case "/dangerzone":
+ echo "Welcome to the danger zone!";
+ break;
+
+case "/google/skynet":
+ echo "Google is SkyNet!!!";
+ break;
+
+ case "/google-is-skynet":
+ echo "Google is SkyNet and they are going to Kill us All";
+ break;
+
+ case "/monique":
+ echo "You are so amazing!! <3 Im so happy to met you :)";
+ break;
+
+
+
+
+default:
+  echo "Default URL <BR>... maybe try some others? ";
+}
 
 // Load Display & Content
 		// Theme & Template
@@ -31,7 +78,17 @@ K. Williams 	[UI/UX]		K.Williams@LilliMedia.com
 
 // Display Page
 
-	
 
-mysqli_close();
+
+
+
+
+
+echo "<BR> TEST: " . $core->id_gen(4,5);
+
+
+//mysqli_close();
+
+echo "<HR> THE END!";
+
 ?>
