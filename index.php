@@ -60,9 +60,8 @@ IF ($numrow == 1)
 ELSE // Else display default message
   { echo "404!! Page Not Found <BR> For Help email You_Suck@Life.com"; }
 
- // Clear Results
-$result->free();
-$result2->free();
+
+
  // Always Close Connection !
 $mysqli->close();
 ?>
