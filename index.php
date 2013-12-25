@@ -23,8 +23,30 @@ K. Williams 	[UI/UX]		K.Williams@LilliMedia.com
 
 // Load Setup
 REQUIRE_ONCE dirname(__FILE__).'/etc/config/system.php';   
+session_start();
 
+$_SESSION['group'] = array ( 
+'admin' => array ( 
+      'name' => 'admin',
+      'read' => '1' ,
+      'write' => '0') ,
+  'user' => array ( 
+      'name' => 'user',
+      'read' => '0' ,
+      'write' => '1') ,
+  'gid01' => array ( 
+      'name' => 'group user 1',
+      'read' => '0' ,
+      'write' => '1')     
+);
 
+echo '<PRE>'; print_r($_SESSION['group']); echo '</PRE>';
+
+$admin = $_SESSION['group']['gid01'];
+
+if ($admin['read'] == '1')
+  { echo "You " . $admin['name']  . " have rights! <BR>";}
+    ELSE {echo 'you ' . $admin['name'] . ' have no rights <BR>';}
 
 $uri= $GLOBALS['uri'];
 echo "Testing..... <BR> Striped URL?: ";

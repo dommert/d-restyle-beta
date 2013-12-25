@@ -22,7 +22,7 @@ class CoreClass
 			}
 		}
 
-
+ 
 		function limit_text($text, $limit) 
 		{
 		      if (str_word_count($text, 0) > $limit) 
@@ -36,16 +36,19 @@ class CoreClass
 
 
 		// Dommert Enterprises ID Generator
-		public function id_gen($min,$max) {
+		function id_gen($min,$max) {
 
 		  $id_length = rand($min,$max);
 		  
 		  // Allowed Characters
 		  $characters = 'BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-		  unset($string);
+		  empty($str); if (!isset($str)) { $str = ''; } 
+		  
 		    for ($i = 0; $i < $id_length; $i++) {
-		      $string .= $characters[rand(0, strlen($characters) - 1)];
+		      $str .= $characters[rand(0, strlen($characters) - 1)];
 		    }
+		   empty($string);
+		  $string = $str;
 		  return $string;
 		  }
 
