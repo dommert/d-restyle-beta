@@ -21,96 +21,48 @@ K. Williams 	[UI/UX]		K.Williams@LilliMedia.com
 //===========================================================/
 
 
-// Load Setup
+ // Load Setup
 REQUIRE_ONCE dirname(__FILE__).'/etc/config/system.php';   
 session_start();
 
-$_SESSION['group'] = array ( 
-'admin' => array ( 
-      'name' => 'admin',
-      'read' => '1' ,
-      'write' => '0') ,
-  'user' => array ( 
-      'name' => 'user',
-      'read' => '0' ,
-      'write' => '1') ,
-  'gid01' => array ( 
-      'name' => 'group user 1',
-      'read' => '0' ,
-      'write' => '1')     
-);
 
-echo '<PRE>'; print_r($_SESSION['group']); echo '</PRE>';
+echo '<h3>' . $url.$uri. ' Page </h3><hR>'; // Should be page address
 
-$admin = $_SESSION['group']['gid01'];
 
-if ($admin['read'] == '1')
-  { echo "You " . $admin['name']  . " have rights! <BR>";}
-    ELSE {echo 'you ' . $admin['name'] . ' have no rights <BR>';}
+ // Connect to Database, Lookup URL request for match
+db_connect();
+$query = "SELECT * FROM url WHERE uri = '$uri' LIMIT 1";
+$result = $mysqli->query($query) 
+  OR die($mysqli->error.__LINE__);
+$numrow = $result->num_rows;  // Number of Rows returned
+  //print_r($result); echo '<BR><BR>'; 
+echo $numrow . " rows found <BR>"; 
 
-$uri= $GLOBALS['uri'];
-echo "Testing..... <BR> Striped URL?: ";
-var_dump($uri);
-echo '<HR><BR>';
-
-switch ($uri)
+ // Match then lookup the page.pgid data   
+IF ($numrow == 1) 
 {
-case "":
-  echo "Welcome to the Index Page";
-  break;
-case "/kameron":
-  echo "I feel your name is Kameron......<BR> And you love cock..";
-  break;
-case "/lillimedia":
-  echo "Lillimedia, Oh I heard of you guys. You have Dommert the Magnificient as a partner";
-  break;
-case "/dommert":
-  echo "Dommert The Magnificient";
-  break;
-case "/jch":
-  echo "Im in love with the letter Z";
-  break;
-case "/dangerzone":
- echo "Welcome to the danger zone!";
- break;
+  echo 'URL Data: ';
+  $row = $result->fetch_assoc();
+  echo "<HEAD> " . $row['head'] . "</HEAD>";
+  echo "<BODY> Public: " . $row['public'] . ", PgID: " . $row['pgid'];
+  echo "<BR> Page-ID: " . $row['pgid'] . "<BR>";
 
-case "/google/skynet":
- echo "Google is SkyNet!!!";
- break;
-
- case "/google-is-skynet":
- echo "Google is SkyNet and they are going to Kill us All";
- break;
-
- case "/monique":
- echo "You are so amazing!! <3 Im so happy to met you :)";
- break;
-
-
-
-
-default:
-  echo "Default URL <BR>... maybe try some others? ";
+   // Lookup Page Information
+  $query2 = "SELECT * FROM page WHERE pgid = '$row[pgid]'";
+  $result2 = $mysqli->query($query2);
+    //print_r($result2);
+  $row2 = $result2->fetch_assoc(); 
+   //Display Page Information
+  echo "Title: " . $row2['title'] . 
+  "<BR>Content: " . $row2['content']; 
 }
 
-// Load Display & Content
-		// Theme & Template
-					//BLOCK & Content
+ELSE // Else display default message
+  { echo "404!! Page Not Found <BR> For Help email You_Suck@Life.com"; }
 
-
-// Display Page
-
-
-
-
-
-
-
-echo "<BR> TEST: " . $core->id_gen(4,5);
-
-
-//mysqli_close();
-
-echo "<HR> THE END!";
-
+ // Clear Results
+$result->free();
+$result2->free();
+ // Always Close Connection !
+$mysqli->close();
 ?>
