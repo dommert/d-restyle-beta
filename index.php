@@ -58,7 +58,10 @@ IF ($numrow == 1)
 }
 
 ELSE // Else display default message
-  { echo "404!! Page Not Found <BR> For Help email You_Suck@Life.com"; }
+  { 
+    #echo "404!! Page Not Found <BR> For Help email You_Suck@Life.com"; 
+    exit(header("Location: http://$url/error/404"));
+  }
 
 
 
