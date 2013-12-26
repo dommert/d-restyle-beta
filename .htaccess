@@ -1,0 +1,22 @@
+# Turn on URL rewriting
+RewriteEngine On
+Options +FollowSymlinks
+#DirectorySlash Off
+#RewriteOptions AllowNoSlash
+
+# Installation directory
+  # RewriteBase /rootDir/
+
+# Protect application and system files from being viewed
+RewriteRule ^(application|modules|system) - [F,L]
+
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ErrorDocument 404 /error/404
+# Rewrite all other URLs to index.php/
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+
+

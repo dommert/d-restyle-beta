@@ -1,0 +1,77 @@
+<?PHP
+/********************************************
+*	Dommert Enterprises Inc (C) 2013-14		*
+*	DUMS - System Configs 							*
+*	Version 1.0		Updated: Dec 2103		*
+*											*
+*********************************************/
+
+// ** NOTE ** Resave this file as 'system.php' 
+
+
+// Site's URL - Default: $_SERVER['SERVER_NAME']
+	// 'http://www.yoursite.com'
+GLOBAL $URL = $_SERVER['SERVER_NAME'];
+
+// Directory  - Default: $_SERVER['DOCUMENT_ROOT']
+	//  '/dir/site/www' or 'C:/site/www'
+GLOBAL $DIR = $_SERVER['DOCUMENT_ROOT'];
+
+// Configs 
+
+		// Admin Configs
+$GLOBALS['admin'] = 
+array(
+	'name' => 'admin name',  // Admin's Name
+	'email' => 'email@domain.com',  // Admin Email
+	'title' => 'System Admin',  // Job Title
+	'misc' => '',  //Misc Data
+	'passwd' => 'p4ssw0rd!', // SU Admin Password (CHANGE!!)
+);
+
+		// Website Configs
+$GLOBALS['site'] =
+array(
+	'title' => 'Title Goes Here', // Website Title
+	'company' => 'Company Name', // Company / Owner Name
+	'author' => 'Author', // Website Author / Creator
+	'description' => 'Short site description can go here', // Short Site Description
+	'language' => 'EN', // Sites Default Language
+);
+
+
+// Database Info
+$db_info = array(
+	'addy' => 'localhost', // Database Address (default: localhost)
+	'user' => '', // Database Username
+	'password' => '', // Username Password
+	'name' => '', // Database Name
+);
+
+
+// ******************** [ NO EDIT ] *********************
+// Database Module
+include $dir.'/lib/module/db.php';
+
+// ************ JavaScript Libraries
+include $dir.'/lib/module/js.php';
+
+// Load Config Token
+unset($sys_config);
+	$sys_config = '1';
+
+// Classes & Modules 
+	
+	// Session
+	// Uniques
+	// Logs
+	// Permissions
+	// User Management System
+	// CMS
+
+// Boot
+
+// Redirect
+
+
+?>
