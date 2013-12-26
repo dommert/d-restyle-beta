@@ -1,34 +1,4 @@
-<?
-// ADD Page Test
-REQUIRE_ONCE dirname(__FILE__).'/etc/config/system.php';  
-
-// Form Logic
-if (isset($_POST['submit'])&& !empty($_POST['uri']))
-{
-	echo "DataSubmit:";
-	$fURI = strtolower($_POST['uri']);
-	$content = $_POST['content'];
-	db_connect();
-	// Insert data into URL table
-	$sql = "INSERT INTO page (content, title) VALUES ('$content', '$_POST[title]')";
-  $mysqli->query($sql);
-  $page_id = $mysqli->insert_id;
-
-	// Then Write into Page Table
-$sql2 = "INSERT INTO url (pgid,uri) VALUES ('$page_id', '$_POST[uri]')";
-$mysqli->query($sql2);
-	// Close the Database
-$mysqli->close();
-	// Finish Message
-echo "Done Writing....";
-	
-}
-
-?>
-		
 <!DOCTYPE html>
-
-
 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta charset="utf-8">
@@ -113,12 +83,7 @@ echo "Done Writing....";
 
 <h1>wysihtml5 - Advanced Editor Example</h1>
 
-<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-	Title: <input type='text' name='title'><BR>
-	URL: <?echo$url;?><input type='test' name='uri'><BR>
-	<!-- Content: <textarea name='content'></textarea><BR> -->
-	
-
+<form>
   <div id="toolbar" style="display: none;">
     <a data-wysihtml5-command="bold" title="CTRL+B">bold</a> |
     <a data-wysihtml5-command="italic" title="CTRL+I">italic</a> |
@@ -159,8 +124,8 @@ echo "Done Writing....";
     </div>
     
   </div>
-  <textarea id="textarea" placeholder="Enter text ..." name="content"></textarea>
-  <br><input type="reset" value="Reset form!"><input type="submit" name='submit' value='Submit'>
+  <textarea id="textarea" placeholder="Enter text ..."></textarea>
+  <br><input type="reset" value="Reset form!">
 </form>
 
 <h2>Events:</h2>
