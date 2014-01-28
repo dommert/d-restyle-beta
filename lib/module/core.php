@@ -12,7 +12,7 @@ class CoreClass
 		# code...
 	}
 
-		function require_login()
+		function Require_Login()
 		{
 			if(!isset($_SESSION['logon']))
 			{
@@ -23,7 +23,7 @@ class CoreClass
 		}
 
  
-		function limit_text($text, $limit) 
+		function Limit_Text($text, $limit) 
 		{
 		      if (str_word_count($text, 0) > $limit) 
 			{
@@ -36,7 +36,7 @@ class CoreClass
 
 
 		// Dommert Enterprises ID Generator
-		function id_gen($min,$max) {
+		function Id_Gen($min,$max) {
 
 		  $id_length = rand($min,$max);
 		  
@@ -54,7 +54,7 @@ class CoreClass
 
 
 
-		function permalink($str)
+		function Permalink($str)
 		{
 			if($str !== mb_convert_encoding( mb_convert_encoding($str, 'UTF-32', 'UTF-8'), 'UTF-8', 'UTF-32') )
 				$str = mb_convert_encoding($str, 'UTF-8', mb_detect_encoding($str));
